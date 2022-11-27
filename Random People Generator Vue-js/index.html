@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+        <img v-bind:src="picture" alt=" `${firstname} ${lastname}`">
+        <h1>{{firstName}} {{lastName}}</h1>
+        <h3>Email: {{email}}</h3>
+        <button v-on:click="getUser()">Get Random user</button>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+       
+                const app = Vue.createApp({
+
+
+                    data() {
+                        return {
+                            firstName: 'John',
+                            lastName: 'Doe',
+                            email: 'John@gmail.com',
+                            gender: 'Male',
+                            picture: 'ousman.png',
+                        }
+                    },
+
+                    methods: {
+                       async getUser() {
+
+                             const person =  [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "John@gmail.com",
+        "gender": "Male",
+        "picture": "https://randomuser.me/api/portraits/med/men/15.jpg"
+      },
+
+      {
+        "firstName": "Jane ",
+        "lastName": "Doe ",
+        "email": " jane@gmail.com",
+        "gender": "Female",
+        "picture": "https://randomuser.me/api/portraits/med/women/5.jpg"
+      },
+
+      {
+        "firstName": "Musa ",
+        "lastName": "Njie ",
+        "email": " musa@gmail.com",
+        "gender": "Male",
+        "picture": "https://randomuser.me/api/portraits/med/men/75.jpg"
+      }
+    ];
+    const index = Math.floor(Math.random() * person.length);              
+
+                            this.firstName = person[index].firstName
+                            this.lastName = person[index].lastName
+                            this.email = person[index].email
+                            this.gender = person[index].gender,
+                            this.picture = person[index].picture
+                        }
+                    }
+
+                })
+
+                app.mount('.app')
+    </script>
+
+</body>
+
+</html>
